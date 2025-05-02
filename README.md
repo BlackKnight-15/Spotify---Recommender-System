@@ -43,28 +43,3 @@ This project provides a comprehensive toolkit for analyzing Spotify user data, e
 
 ---
 
-## 🧩 Example Usage
-
-```python
-bandit = EpsilonGreedyBandit(sources=['top_tracks', 'recent_tracks', 'saved_tracks'])
-
-# Select a source based on exploration-exploitation
-selected_source = bandit.select_action()
-
-# Get user profile and recommendations for the source
-fetcher = SpotifyUserDataFetcher(user_session)
-ranked_tracks, _ = fetcher.rank_user_tracks(...)
-
-# Collect feedback
-collector = RecommendationFeedbackCollector(
-    user_source_profile=...,  # Dict[str, List[float]]
-    index=faiss_index,
-    song_ids=song_id_list,
-    init_df=track_metadata_df,
-    print_song_names_and_artists=HelperFunctions.print_song_names_and_artists
-)
-recommendations, feedback = collector.collect_feedback()
-
-# Update bandit with feedback
-average_score = np.nanmean(feedback[selected_source])
-bandit.update_source_weights(selected_source, average_score)
