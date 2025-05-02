@@ -1,0 +1,6 @@
+{
+    "client_id": "your client id",
+    "client_secret": "your client secret",
+    "redirect_uri": "http://127.0.0.1:8888/callback",
+    "scope": "user-top-read user-library-read streaming user-read-playback-state user-read-recently-played user-read-currently-playing playlist-modify-public playlist-modify-private app-remote-control"
+}
